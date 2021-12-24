@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         *{
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+         }
+         body{
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             min-height: 100vh;
+             background: black;
+         }
+         .tree{
+           position: relative;
+           top: -200px;
+           width: 300px;
+           height: 300px;
+         transform-style: preserve-3d;
+         transform: rotateX(-20deg) rotateY(30deg);
+       
+       
+       }
+       .tree div{
+           position: absolute;
+           top:0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           transform-style: preserve-3d;
+           transform: translateY(calc(100px * var(--j)));
+       }
+       .tree div.top span{
+        position: absolute;
+           top:0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background: linear-gradient(90deg ,#69c069,#77dd77);
+           clip-path: polygon(50% 0%,0% 100%,100% 100%);
+           transform-origin: bottom;
+           border-bottom: 10px solid #00000019;
+           transform: rotateY(calc(90deg * var(--i))) translateZ(150px) rotateX(30deg);
+           animation: color 2s linear infinite;
+           
+       }
+       .tree div.bottom span{
+        position: absolute;
+           top:600px;
+           left: calc(50% - 30px);
+           width: 60px;
+           height: 150px;
+           background: linear-gradient(90deg ,#bb6622,#df7214);
+           /*clip-path: polygon(50% 0%,0% 100%,100% 100%);*/
+           transform-origin: bottom;
+           border-bottom: 10px solid #00000019;
+           transform: rotateY(calc(90deg * var(--i))) translateZ(30px) rotateX(30deg); 
+       }
+       i
+        {
+            position: absolute;
+            height: 200px;
+            background: linear-gradient(transparent,#fff);
+            border-top-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            animation: animate 5s linear infinite;
+        }
+        i:nth-child(3n+1)
+        {
+            background: linear-gradient(transparent,#0ff);
+        }
+        i:nth-child(3n+2)
+        {
+            background: linear-gradient(transparent,#0f0);
+        }
+        i:nth-child(3n+3)
+        {
+            background: linear-gradient(transparent,#f00);
+        }
+       @keyframes animate {
+           0%{
+               transform: translateY(-200px);
+           }
+           100%{
+               transform: translateY(calc(100vh+200px));
+           }
+       }
+       @keyframes color {
+           0%{
+               background: linear-gradient(red,blue,pink);
+           }
+           20%{
+               background: linear-gradient(orange,red,yellow);
+           }
+           40%{
+               background: linear-gradient(rgb(117, 87, 87),rgb(186, 214, 168),rgb(230, 40, 71));
+           }
+           60%{
+               background: linear-gradient(rgb(35, 219, 195),rgb(197, 51, 202),rgb(220, 214, 221));
+           }
+           80%{
+            background: linear-gradient(red,blue,pink);
+           }
+           100%{
+               background: linear-gradient(rgb(211, 214, 23),rgba(14, 14, 27, 0.021),rgb(63, 194, 51));
+           }
+
+       }
+    </style>
+</head>
+<body>
+    <script>
+        function rain(){
+            let amount= 200;
+            let body = document.querySelector('body');
+            let i = 0;
+            while(i<amount){
+                let drop = document.createElement('i');
+
+                let size= Math.random() * 5;
+                let posX = Math.floor(Math.random() * window.innerWidth);
+                let delay = Math.random()* -20;
+                let duration = Math.random()* 5;
+
+                drop.style.width = 0.2 + size+'px';
+                drop.style.left = posX + 'px';
+                drop.style.animationDelay = delay +'s';
+                drop.style.animationDuration = 1+ duration +'s';
+                body.appendChild(drop);
+                i++
+            }
+        }
+        rain();
+    </script>
+    <div class="tree">
+        <div class="top" style="--j:0">
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+        </div>
+
+        <div class="top" style="--j:1">
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+        </div>
+
+        <div class="top" style="--j:2">
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+        </div>
+
+        <div class="top" style="--j:3">
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+        </div>
+
+        <div class="bottom">
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+        </div>
+    </div>
+
+</body>
+</html>
